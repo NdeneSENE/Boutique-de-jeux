@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gameshop</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'shop/bulma-0.6.2/css/bulma.css' %}"/>
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'shop/main.css' %}"/>
+</head>
+<body>
+<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="{% url 'shop:index' %}">
+            <img src="{% static 'shop/images/face-with-stuck-out-tongue-emoji-emoticon-vector-icon.png' %}" alt="Bulma: a modern CSS framework based on Flexbox"
+                 width="40" height="40">
+        </a>
+    </div>
+
+    <div class="navbar-end">
+
+        <div class="navbar-item">
+          {% if request.path == "/login" %}
+            <a href="{% url 'shop:signup' %}" class="button">Signup</a>
+            {% elif request.path == "/signup"  %}
+            <a href="{% url 'shop:login' %}" class="button">Login</a>
+            {% elif request.path == "/home"  %}
+            <a href="{% url 'shop:login' %}" class="button">Login</a>
+        {% endif %}
+        </div>
+    </div>
+</nav>
+<section class="section">
+    <div class="container">
+        {% block content %}{% endblock content %}
+    </div>
+</section>
+
+</body>
+</html>

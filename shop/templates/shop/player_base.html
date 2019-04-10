@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gameshop</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'shop/bulma-0.6.2/css/bulma.css' %}"/>
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    {#    <link rel="stylesheet" type="text/css" href="{% static 'shop/main.css' %}"/>#}
+    <link rel="stylesheet" type="text/css" href="{% static 'shop/catalog.css' %}"/>
+</head>
+<body>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="{% url 'shop:index' %}">
+            <img src="{% static 'shop/images/face-with-stuck-out-tongue-emoji-emoticon-vector-icon.png' %}"
+                 alt="Bulma: a modern CSS framework based on Flexbox"
+                 width="40" height="40">
+        </a>
+        <div class="navbar-burger burger" data-target="navMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <div class="navbar-end">
+        <div class="navbar-item">
+            <form action="{% url 'shop:search' %}" method="post">
+                {% csrf_token %}
+                <p class="control has-icons-left">
+                    <input class="input" type="text" name="q" placeholder="search">
+                    <span class="icon is-left">
+                <i class="fas fa-search"></i>
+              </span>
+                </p>
+            </form>
+
+        </div>
+        <div class="navbar-item">
+            <div id="navMenu" class="navbar-menu">
+                <div class="navbar" style="min-height: 1.25rem;">
+                    <div class="navbar-item has-dropdown is-hoverable is-mobile">
+                        <a class="navbar-link">
+                            Menu
+                        </a>
+                        <div class="navbar-dropdown is-boxed">
+                            <a class="navbar-item" href="{% url 'shop:catalog' %}">
+                                Catalog
+                            </a>
+                            <a class="navbar-item" href="{% url 'shop:logout' %}">
+                                Logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-item">
+
+        </div>
+
+    </div>
+
+</nav>
+<section class="section">
+    <div class="container">
+        {% block content %}{% endblock content %}
+    </div>
+</section>
+
+
+<script src="{% static 'shop/js/burger.js' %}"></script>
+</body>
+</html>

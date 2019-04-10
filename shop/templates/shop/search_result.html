@@ -1,0 +1,26 @@
+{% extends "shop/player_base.html" %}
+{% block content %}
+
+    {% if error %}
+        <h3 style="color: red">{{ error }}</h3>
+
+    {% endif %}
+    <div class="columns">
+        <div class="column">
+            <h1 style="color: #0f81cc" class="title">Search results for {{query}}</h1>
+            {% for game in games %}
+                <div class="box">
+                    <div class="content">
+                        <p class="title is-medium">{{ game.title }}</p>
+                        <p class="subtitle is-small">Built by {{ game.developer }}</p>
+                        <a class="button is-info is-medium" href="{% url 'shop:game_info' game.id %}">Add to cart</a>
+                        <div class="title is-pulled-right">{{ game.price }}$</div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+
+{% endblock content %}

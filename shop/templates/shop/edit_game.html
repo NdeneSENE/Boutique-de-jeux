@@ -1,0 +1,58 @@
+{% extends "shop/developer_base.html" %}
+{% block content %}
+
+
+    <div class="columns">
+          <div class="column is-one-fifth">
+
+          </div>
+
+        <div class="column" >
+                {% if error %}
+                    <h3 style="color: red">{{ error }}</h3>
+                {% endif %}
+
+            <h4 class="title is-5"> You can update all or one of the fields.</h4>
+
+            <form action="{% url 'shop:updategame' game.id %}" method="post">
+            {% csrf_token %}
+                <div class="field">
+                  <div class="control">
+                    <label class="label">Game title</label>
+                    <input class="input is-primary" placeholder="" value="{{ game.title }}" type="text" name="title">
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="control">
+                    <label class="label">Price</label>
+                    <input class="input is-primary" value="{{ game.price }}" type="number" name="price">
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="control">
+                      <label class="label">Game URL</label>
+                    <input class="input is-primary" value="{{ game.url }}" type="text" name="url">
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="control">
+                    <button class="button is-success is-outlined is-fullwidth" type="submit" value="Update">Update</button>&nbsp;
+                  </div>
+                </div>
+            </form>
+
+            <h3 class="title is-5">Delete Game {{ game.title }}</h3>
+            <form action="{% url 'shop:deletegame' game.id %}" method="post">
+                {% csrf_token %}
+                 <button class="button is-danger is-outlined is-fullwidth" type="submit" name="delete" value="Delete">Delete</button>&nbsp;
+
+            </form>
+         </div>
+        <div class="column ">
+
+          </div>
+
+    </div>
+
+
+{% endblock content %}

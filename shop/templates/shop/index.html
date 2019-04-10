@@ -1,0 +1,39 @@
+{% extends "shop/player_base.html" %}
+{% block content %}
+    {% if error %}
+        <h3 style="color: red">{{ error }}</h3>
+    {% endif %}
+
+
+         <div class="has-text-centered tile is-ancestor">
+           <div style="margin: auto" class="tile is-8 is-parent">
+               <div class="tile is-child box">
+                   <h1 class="title is-2"> Hello, &nbsp;<span style="color:
+                                   #1496ed">{{ user.username }}</span> </h1>
+
+
+
+
+            <h2 class="title is-3">Welcome to the game shop.</h2>
+            <h4 class="title is-4">This is your home page.</h4>
+            <h4 class="title is-5">You can access to different features of the website by clicking the navbar.</h4>
+            <h4 class="title is-5" style="color:#1496ed">You can also see your games here:</h4>
+    </div>
+  </div>
+    </div>
+
+<div style="margin: auto" class="has-text-centered column is-half-desktop">
+         {% for game in purchased_games %}
+                <div class="box">
+                    <div class="content">
+                        <p class="title is-medium">{{ game.title }}</p>
+                        <a class="button is-success is-medium" href="{% url 'shop:play_game' game.id %}">Play</a>
+                    </div>
+                </div>
+            {% endfor %}
+</div>
+
+
+
+
+{% endblock content %}

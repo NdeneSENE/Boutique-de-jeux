@@ -1,0 +1,40 @@
+{% extends "shop/player_base.html" %}
+{% block content %}
+
+<div class="columns">
+
+        <div class="column" >
+             <h1 class="title has-text-centered">Games in your Cart:</h1>
+            <div class="card">
+                <div class="card-content">
+                    <p class="title has-text-centered"><span>Game Title: </span>
+                        {{ game.title }}
+                    </p>
+                    <p class="subtitle has-text-centered"><span>Developer: </span>
+                        {{ game.developer }}
+                    </p>
+                </div>
+                <footer class="card-footer">
+                    <form class="buy-form" action="{{ url }}" method="post">
+                        <input name="pid" value="{{ pid }}" type="hidden"/>
+                        <input name="sid" value="{{ sid }}" type="hidden">
+                        <input name="amount" value="{{ amount }}" type="hidden">
+                        <input name="success_url" value="{{ success }}" type="hidden">
+                        <input name="cancel_url" value="{{ cancel }}" type="hidden">
+                        <input name="error_url" value="{{ error }}" type="hidden">
+                        <input name="checksum" value="{{ checksum }}" type="hidden">
+                        <button class="button is-primary is-large" type="submit">Buy</button>
+
+                    </form>
+                </footer>
+
+            </div>
+        </div>
+     <div class="column is-one-fifth" >
+
+        </div>
+</div>
+
+
+
+{% endblock content %}

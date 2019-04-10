@@ -1,0 +1,7 @@
+{% extends "shop/player_base.html" %}
+{% block content %}
+
+
+<h1 id="game_title" class="title">Play the game {{ game.title }} in the iFrame</h1>
+<iframe class="box" id="game_frame" width="500" height="400" src="{{ game.url }}"></iframe>
+{% endblock content %}

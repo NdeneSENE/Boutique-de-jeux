@@ -1,0 +1,65 @@
+{% extends "shop/base.html" %}
+
+{% block content %}
+
+<div class="columns">
+      <div class="column">
+          <div  style="margin-left:20px; color:red">
+                     {% if error %}
+                      <h2>{{ error }}</h2>
+                   {% endif %}
+                </div>
+           <nav class="panel">
+            <p class="panel-heading" style="text-align:center">
+            <span><strong>Login</strong></span>
+            </p>
+
+            <div class="panel-block">
+                 <form action="{% url 'shop:loguser' %}" method="post">
+                      {% csrf_token %}
+                      <div class="field">
+                          <label class="label">Username</label>
+                            <div class="control has-icons-left has-icons-right">
+                              <input class="input is-success" type="text" placeholder="Username" name="username">
+                              <span class="icon is-small is-left">
+                                <i class="fas fa-user"></i>
+                              </span>
+                              <span class="icon is-small is-right">
+                                <i class="fas fa-check"></i>
+                              </span>
+                            </div>
+                      </div>
+
+                      <div class="field">
+                          <label class="label">Password</label>
+                          <div class="control has-icons-left">
+                              <input class="input" name="password" placeholder="Password" type="password">
+                              <span class="icon is-small is-left">
+                                <i class="fas fa-lock"></i>
+                              </span>
+                          </div>
+
+                      </div>
+                      <div class="field">
+                          <div class="control">
+                              <button class="button is-success is-outlined is-fullwidth" type="submit" value="Login">Login</button>&nbsp;
+
+                           </div>
+                      </div>
+
+                      <div class="panel-block">
+                                        <a class="button is-link is-outlined is-fullwidth" onclick="$(this).button('loading');" style="background:blue; color:white" name="facebook" href="{% url 'social:begin' 'facebook' %}">
+                                             Login with  Facebook
+                                        </a>
+
+                      </div>
+
+                  </form>
+            </div>
+          </nav>
+
+        </div>
+      </div>
+
+
+{% endblock content %}

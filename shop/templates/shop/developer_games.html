@@ -1,0 +1,23 @@
+{% extends "shop/developer_base.html" %}
+{% block content %}
+
+
+    <div class="columns">
+        <div class="column">
+            <h2 class="title is-2">Games developed by: <span style="color:blue">{{ user.username }}</span></h2>
+            {% for game in games %}
+                <div class="box">
+                    <div class="content">
+                        <p class="title is-medium">{{ game.title }}</p>
+                        <p class="subtitle is-small">Built by {{ game.developer }}</p>
+                        <a class="button is-primary is-medium" href="{% url 'shop:editgame' game.id %}">Edit</a>
+                        <div class="title is-pulled-right">{{ game.price }}$</div>
+                    </div>
+                </div>
+            {% endfor %}
+
+
+        </div>
+    </div>
+
+{% endblock content %}

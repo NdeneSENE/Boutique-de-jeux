@@ -1,0 +1,18 @@
+{% extends "shop/base.html" %}
+{% block content %}
+    <h1 class="title">
+        The world of gamers is here!
+    </h1>
+
+    {% for game in games %}
+                <div class="box">
+                    <div class="content">
+                        <p class="title is-medium">{{ game.title }}</p>
+                        <p class="subtitle is-small">Built by <span
+                            style="color:#1496ed">{{ game.developer }}</span></p>
+                        <div class="title is-pulled-right">{{ game.price }}$</div>
+                    </div>
+                </div>
+    {% endfor %}
+
+{% endblock content %}

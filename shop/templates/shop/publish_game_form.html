@@ -1,0 +1,43 @@
+{% extends "shop/developer_base.html" %}
+{% block content %}
+
+
+    <div class="publish-form columns">
+
+        <div class="column" >
+            <h4 class="title is-5">Input Detail information about the game:</h4>
+             {% if error %}
+                    <h3 style="color: red">{{ error }}</h3>
+                {% endif %}
+            <form action="{% url 'shop:publish_game' %}" method="post">
+            {% csrf_token %}
+                <div class="field">
+                  <div class="control">
+                    <label class="label">Game title</label>
+                    <input class="input is-primary" placeholder="Title" type="text" name="title">
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="control">
+                    <label class="label">Price</label>
+                    <input class="input is-primary" placeholder="Price" type="number" name="price">
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="control">
+                      <label class="label">Game URL</label>
+                    <input class="input is-primary" placeholder="URL" type="text" name="url">
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="control">
+                    <button class="button is-success is-outlined is-fullwidth" type="submit" value="Publish">Publish</button>&nbsp;
+                  </div>
+                </div>
+
+            </form>
+         </div>
+    </div>
+
+
+{% endblock content %}

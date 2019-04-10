@@ -1,0 +1,75 @@
+{% extends "shop/developer_base.html" %}
+{% block script %} 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+{% endblock %}
+{% block content %}
+
+
+    <div class="columns">
+        <div class="column">
+            <div class="tile is-ancestor has-text-centered">
+                <div style="margin: auto;" class="tile is-parent">
+                    <div class="tile is-child box">
+                        <h1 class="title is-2"> Hello Developer, &nbsp<span
+                                style="color:#1496ed">{{ user.username }}</span></h1>
+
+
+
+                        <h2 class="title is-3">Welcome to the game shop.</h2>
+                        <h4 class="title is-4">This is your home page.</h4>
+                        <h4 class="title is-5">You can publish new games here:</h4>
+                        <a class="button is-info is-medium" href="{% url 'shop:publish' %}">Publish new game</a>
+                    </div>
+                </div>
+            </div>
+
+                <h2 class="title " style="color:#00d1b2">Purchasing statistics:</h2>
+                    {% for transaction in statistics %}
+                        <div class="box">
+                            <div class="content">
+                                <p class="title is-medium">{{ transaction.game.title }}</p>
+                                <p class="subtitle is-small">Buyer: {{ transaction.player.user }}</p>
+                                <p class="subtitle is-small">Time: {{ transaction.timestamp }}</p>
+                                <p class="subtitle is-small">Paid: {{ transaction.game.price }}€</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="content">
+            <div class="panel">
+                <div class="panel-heading bg-blue">
+                  <h4 class="panel-title text-center text-white">
+                      Revenue par Weekend
+                  </h4>
+                </div>
+                <div class="panel-body">
+                    <canvas id="revenueChart" height="110"></canvas>
+                    <script>
+                        var ctx = document.getElementById("revenueChart").getContext("2d");
+                        var data = {
+                            labels: ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"],
+                            datasets: [
+                                {
+                                    label: "Revenue par Weekend",
+                                    backgroundColor: "rgba(54,162,235,0.9)",
+                                    hoverBackgroundColor: "rgba(54,162,235,1)",
+                                    data: [17, 34, 43, 55, 99, 56, 29]
+                                }
+                            ]
+                        };
+
+                        new Chart(ctx, {
+                          type: 'bar',
+                          data: data
+                        });
+
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
